@@ -1,0 +1,7 @@
+kivy>=2.3.1
+kivymd>=1.2.0
+
+# Dev/build tooling - Buildozer only runs on Linux/macOS/WSL, not native
+# Windows. Install this separately inside WSL or a Linux CI runner when
+# it's time to package the APK, not in the Windows dev virtualenv.
+# buildozer>=1.5.0
