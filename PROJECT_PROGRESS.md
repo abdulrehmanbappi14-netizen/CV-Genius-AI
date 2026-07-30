@@ -77,11 +77,13 @@ C:\Users\Acer User\Downloads\CV-Genius-AI\
   1.2.0 pinned as requirements, Android API 34 / minAPI 24.
 - `requirements.txt`, `.gitignore`, `README.md` written.
 
-**Nothing has been run yet** — `main.py` has not been executed
-successfully because of the environment blockers in §4. The code has
-been written carefully to match standard Kivy/KivyMD patterns but has
-**not been visually verified to actually launch a window**. Treat it as
-unverified until §9 step 1 is done.
+- **`main.py` is verified working** (2026-07-31): launched via
+  `.venv\Scripts\python.exe main.py`, log ended with
+  `[INFO] [Base] Start application main loop` and no errors/tracebacks
+  — the KivyMD window opens, GL/SDL2 initialize correctly (Intel UHD
+  Graphics 620, OpenGL 4.6), and `HomeScreen`'s `.kv` layout loads
+  without issue. Process was stopped intentionally afterward (it's a
+  GUI event loop that runs until closed).
 
 ## 4. Environment findings (important — read before installing anything)
 
@@ -99,20 +101,34 @@ Checked on 2026-07-31, this machine:
   simply too new-Python-incompatible right now; this is a Kivy/PyPI
   ecosystem lag issue, not something fixable by changing this project's
   code.
-- **Fix applied:** user chose to install both via `winget` (see §6 for
-  exact outcome/versions once confirmed — update this section after
-  installs finish if picking this up mid-setup).
+- **Fix applied and confirmed working:** installed both via `winget`
+  (user chose this option explicitly):
   - `winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements --silent`
+    → **Git 2.55.0.3** installed and confirmed working (`git --version`).
   - `winget install --id Python.Python.3.12 -e --accept-package-agreements --accept-source-agreements --silent`
+    → **Python 3.12.10** installed and confirmed working (`py -3.12 --version`).
+  - **Gotcha hit during setup:** right after a winget install, `git`/`py
+    -3.12` were still "not recognized" in already-open terminal
+    sessions — PATH is only re-read by newly-started processes, not
+    picked up by a shell that was already running. Opening a fresh
+    terminal (or, in a pinch, manually reloading
+    `$env:Path` from
+    `[System.Environment]::GetEnvironmentVariable("Path","Machine")` +
+    `...("Path","User")` in PowerShell) fixes it. If `git`/`python`
+    seem missing right after installing them, this is almost certainly
+    why — try a fresh terminal before assuming the install failed.
 - **Why Python 3.12 specifically:** it's a recent, stable release with
-  mature Kivy wheel support, while staying close to current. Do **not**
-  use the system's Python 3.14 for this project's virtual environment —
-  create the venv with `py -3.12 -m venv .venv` explicitly (see §9).
+  mature Kivy wheel support. The system's Python 3.14 remains installed
+  and unchanged (still the default for `python`/`py` outside this
+  project) — this project's `.venv` was built explicitly with
+  `py -3.12 -m venv .venv` and must keep being used via that venv, not
+  system Python.
 
 ## 5. Bug fixes completed
 
-None yet — no code has been run yet, so nothing to fix. (See §3 —
-`main.py` is unverified.)
+None needed — `main.py` ran successfully on the first attempt once the
+environment (§4) was fixed. No code defects found yet, since no real
+feature code exists yet either.
 
 ## 6. Files created or modified so far
 
@@ -130,8 +146,16 @@ None yet — no code has been run yet, so nothing to fix. (See §3 —
 | `README.md` | Created. |
 | `PROJECT_PROGRESS.md` | Created (this file). |
 
-Git repository: **not yet initialized as of the start of this file** —
-update this line once `git init` + first commit is done (see §9 step 2).
+Git repository: **initialized**, first commit made —
+`f7893e4 Initial project skeleton: Kivy/KivyMD app structure` (19 files,
+on branch `master`). Local git identity was set to
+`Abdul Rehman <abdulrehmanbappi13@gmail.com>` (a reasonable guess from
+the account email — change with `git config user.name`/`user.email` if
+a different name is preferred).
+
+Also created (not tracked by git — see `.gitignore`):
+- `.venv\` — Python 3.12 virtual environment with Kivy 2.3.1 + KivyMD
+  1.2.0 installed (see §4).
 
 ## 7. Known gaps / things to be aware of (not bugs, just context)
 
@@ -151,66 +175,58 @@ update this line once `git init` + first commit is done (see §9 step 2).
   no local storage/persistence. All of that is future work, to be built
   incrementally per the user's "step by step" instruction — resist the
   urge to scaffold all of it at once.
-- GitHub: only local git is being set up in this session. No GitHub
-  remote repository has been created or connected yet — that needs the
-  user to create the repo on github.com (or provide `gh` CLI access) and
-  decide on visibility (public/private) before a remote push happens.
+- GitHub: only local git exists so far. No GitHub remote repository has
+  been created or connected yet — that needs the user to create the repo
+  on github.com (or provide `gh` CLI access) and decide on visibility
+  (public/private) before a remote push happens.
+- KivyMD 1.2.0 (pinned in `requirements.txt`/`buildozer.spec`) logs a
+  deprecation warning on startup: "Version 1.2.0 is deprecated... Use
+  KivyMD version 2.0.0 from the master branch". 1.2.0 was still used
+  deliberately since it's the latest stable PyPI release (2.0.0 is only
+  available as an unreleased install-from-git master branch) — revisit
+  this tradeoff later if KivyMD 2.0 has a stable PyPI release by the
+  time real feature work starts.
 
 ## 8. Current project status
 
-- Full folder/file skeleton exists and is believed structurally correct
-  for a standard Kivy/KivyMD project, but **`main.py` has not yet been
-  successfully run/verified** — blocked on environment setup (§4).
-- Git/Python 3.12 install via winget was chosen and kicked off this
-  session — confirm completion and actual versions before trusting this
-  section; update once verified.
-- No GitHub remote connected yet.
-- No CV-builder features implemented — this is scaffolding only.
+- Full folder/file skeleton exists, matches standard Kivy/KivyMD project
+  conventions, and **is verified working**: `main.py` launches a KivyMD
+  window showing the placeholder `HomeScreen` with no errors (§3, §5).
+- Git repo initialized locally with one commit (§6). **No GitHub remote
+  connected yet.**
+- Dev environment is fully set up: Git 2.55.0, Python 3.12.10, and a
+  `.venv` with Kivy 2.3.1 + KivyMD 1.2.0 installed and confirmed working
+  (§4, §6).
+- No CV-builder features implemented — this is scaffolding only, by
+  design, per the "step by step" approach.
+- VS Code has **not** been opened/configured for this project yet in
+  this session (no way to verify that from a terminal-only session) —
+  first item in §9.
 
 ## 9. Exact next task to continue
 
-1. **Verify the winget installs actually completed successfully:**
-   `git --version` and `py -3.12 --version` (or `python --version` after
-   reopening the terminal so PATH picks up the new installs — a fresh
-   terminal/VS Code window is usually required after installing Git or
-   Python via winget). If either is still missing, finish installing it
-   manually before continuing.
-2. **Initialize git and make the first commit:**
-   ```
-   cd "C:\Users\Acer User\Downloads\CV-Genius-AI"
-   git init
-   git add .
-   git commit -m "Initial project skeleton: Kivy/KivyMD app structure"
-   ```
-3. **Create a Python 3.12 virtual environment and install dependencies**
-   (do NOT use the system Python 3.14 — see §4 for why):
-   ```
-   py -3.12 -m venv .venv
-   .venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
-4. **Run the app for the first time and visually confirm it launches:**
-   ```
-   python main.py
-   ```
-   Expect a window showing "CV Genius AI" and the subtitle text. If it
-   fails, capture the exact traceback before attempting any fix.
-5. **Connect to GitHub:** create a new empty repository on github.com
-   named `CV-Genius-AI` (ask the user whether it should be public or
-   private, and under which GitHub account), then:
+1. **Open the project in VS Code and select the right interpreter:**
+   open the `CV-Genius-AI` folder in VS Code, then Ctrl+Shift+P →
+   "Python: Select Interpreter" → pick
+   `.venv\Scripts\python.exe` (Python 3.12.10) so IntelliSense/linting
+   and the integrated terminal both use the correct environment. Install
+   the "kivy-lang" extension if `.kv` syntax highlighting is wanted.
+2. **Connect to GitHub:** create a new empty repository on github.com
+   named `CV-Genius-AI` (confirm with the user: public or private, and
+   under which GitHub account), then from the project folder:
    ```
    git remote add origin <the repo URL>
    git branch -M main
    git push -u origin main
    ```
-6. **Set up VS Code for this project:** open the `CV-Genius-AI` folder
-   in VS Code, select the `.venv` Python 3.12 interpreter (Ctrl+Shift+P
-   → "Python: Select Interpreter"), and confirm the Kivy language
-   support/linting is comfortable to work with (install the "kivy-lang"
-   VS Code extension if `.kv` syntax highlighting is wanted).
-7. **Only after 1–6 are done and verified**, start actual feature work:
-   the natural first real feature is a `models/cv_profile.py` data model
+3. **Only after 1–2 are done**, start actual feature work. The natural
+   first real feature is a `cvgenius/models/cv_profile.py` data model
    (name, contact info, a list of experience entries, education,
    skills) plus a first real form screen to capture it — but confirm
    this with the user before starting, since they may want a different
    first slice (e.g. template selection UI first, or PDF export first).
+4. **Remember the venv activation step** every new terminal session
+   before running anything: `.venv\Scripts\activate` (or just call
+   `.venv\Scripts\python.exe`/`.venv\Scripts\pip.exe` directly, which is
+   what was used during this session's verification and doesn't depend
+   on activation state).
