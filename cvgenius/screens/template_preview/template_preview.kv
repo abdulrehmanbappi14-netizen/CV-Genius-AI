@@ -1,0 +1,22 @@
+#:kivy 2.3.1
+
+<TemplatePreviewScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "24dp"
+        spacing: "16dp"
+
+        MDLabel:
+            text: "Resume Preview"
+            halign: "center"
+            font_style: "H5"
+
+        MDTextField:
+            id: preview_text
+            text: root.get_preview_text()
+            multiline: True
+            readonly: True
+
+        MDRectangleFlatButton:
+            text: "Back to Profile Editor"
+            on_release: root.manager.current = "profile_editor"

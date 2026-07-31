@@ -12,18 +12,23 @@
             font_style: "H5"
 
         MDTextField:
+            id: full_name
             hint_text: "Full name"
 
         MDTextField:
+            id: email
             hint_text: "Email"
 
         MDTextField:
+            id: phone
             hint_text: "Phone"
 
         MDTextField:
+            id: location
             hint_text: "Location"
 
         MDTextField:
+            id: summary
             hint_text: "Professional summary"
             multiline: True
             max_height: "120dp"
@@ -39,17 +44,23 @@
             max_height: "120dp"
 
         MDTextField:
+            id: skills
             hint_text: "Skills"
             multiline: True
             max_height: "120dp"
 
         MDTextField:
+            id: languages
             hint_text: "Languages"
 
         MDTextField:
             hint_text: "Certifications"
             multiline: True
             max_height: "120dp"
+
+        MDRectangleFlatButton:
+            text: "Preview Resume"
+            on_release: root.manager.current = "template_preview"
 
         MDRectangleFlatButton:
             text: "Back to Home"

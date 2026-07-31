@@ -5,6 +5,8 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import List
 
+from cvgenius.data.templates.template_registry import get_template
+
 
 @dataclass
 class ExperienceEntry:
@@ -50,6 +52,7 @@ class CVProfile:
     linkedin: str = ""
     github: str = ""
     summary: str = ""
+    template_name: str = ""
     skills: List[str] = field(default_factory=list)
     experiences: List[ExperienceEntry] = field(default_factory=list)
     education: List[EducationEntry] = field(default_factory=list)
@@ -60,6 +63,25 @@ class CVProfile:
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+    def render_preview(self) -> str:
+        skill_text = ", ".join(self.skills[:3]) if self.skills else "No skills listed"
+        template_key = self.template_name or "classic"
+
+        try:
+            template_label = get_template(template_key).label
+        except KeyError:
+            template_label = template_key
+
+        return "\n".join(
+            [
+                f"Template: {template_label}",
+                f"Name: {self.full_name or 'Unknown'}",
+                f"Title: {self.professional_title or 'Professional'}",
+                f"Summary: {self.summary or 'No summary available'}",
+                f"Skills: {skill_text}",
+            ]
+        )
 
     def save_to_file(self, file_path: str | Path) -> None:
         path = Path(file_path)
@@ -82,6 +104,7 @@ class CVProfile:
             linkedin=data.get("linkedin", ""),
             github=data.get("github", ""),
             summary=data.get("summary", ""),
+            template_name=data.get("template_name", ""),
             skills=list(data.get("skills", [])),
             experiences=experiences,
             education=education,
