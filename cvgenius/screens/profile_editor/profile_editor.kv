@@ -1,0 +1,33 @@
+#:kivy 2.3.1
+
+<ProfileEditorScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "24dp"
+        spacing: "16dp"
+
+        MDLabel:
+            text: "Profile Editor"
+            halign: "center"
+            font_style: "H5"
+
+        MDTextField:
+            hint_text: "Full name"
+
+        MDTextField:
+            hint_text: "Email"
+
+        MDTextField:
+            hint_text: "Phone"
+
+        MDTextField:
+            hint_text: "Location"
+
+        MDTextField:
+            hint_text: "Professional summary"
+            multiline: True
+            max_height: "120dp"
+
+        MDRectangleFlatButton:
+            text: "Back to Home"
+            on_release: root.manager.current = "home"
