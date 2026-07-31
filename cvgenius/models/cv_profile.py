@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 from dataclasses import asdict, dataclass, field
+from pathlib import Path
 from typing import List
 
 
@@ -59,6 +61,10 @@ class CVProfile:
     def to_dict(self) -> dict:
         return asdict(self)
 
+    def save_to_file(self, file_path: str | Path) -> None:
+        path = Path(file_path)
+        path.write_text(json.dumps(self.to_dict(), indent=2), encoding="utf-8")
+
     @classmethod
     def from_dict(cls, data: dict) -> "CVProfile":
         experiences = [ExperienceEntry(**entry) for entry in data.get("experiences", [])]
@@ -84,3 +90,9 @@ class CVProfile:
             languages=list(data.get("languages", [])),
             achievements=list(data.get("achievements", [])),
         )
+
+    @classmethod
+    def load_from_file(cls, file_path: str | Path) -> "CVProfile":
+        path = Path(file_path)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return cls.from_dict(data)
