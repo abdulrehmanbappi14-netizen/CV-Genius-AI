@@ -26,18 +26,26 @@ class ProfileEditorScreen(Screen):
 
     def sync_profile_to_fields(self) -> None:
         self.ids.full_name.text = self.profile.full_name
+        self.ids.professional_title.text = self.profile.professional_title
         self.ids.email.text = self.profile.email
         self.ids.phone.text = self.profile.phone
         self.ids.location.text = self.profile.location
+        self.ids.website.text = self.profile.website
+        self.ids.linkedin.text = self.profile.linkedin
+        self.ids.github.text = self.profile.github
         self.ids.summary.text = self.profile.summary
         self.ids.skills.text = ", ".join(self.profile.skills)
         self.ids.languages.text = ", ".join(self.profile.languages)
 
     def sync_fields_to_profile(self) -> None:
         self.profile.full_name = self.ids.full_name.text
+        self.profile.professional_title = self.ids.professional_title.text
         self.profile.email = self.ids.email.text
         self.profile.phone = self.ids.phone.text
         self.profile.location = self.ids.location.text
+        self.profile.website = self.ids.website.text
+        self.profile.linkedin = self.ids.linkedin.text
+        self.profile.github = self.ids.github.text
         self.profile.summary = self.ids.summary.text
         self.profile.skills = [item.strip() for item in self.ids.skills.text.split(",") if item.strip()]
         self.profile.languages = [item.strip() for item in self.ids.languages.text.split(",") if item.strip()]
