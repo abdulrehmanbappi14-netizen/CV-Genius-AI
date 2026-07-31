@@ -40,6 +40,7 @@ class ProfileEditorScreen(Screen):
         self.ids.linkedin.text = self.profile.linkedin
         self.ids.github.text = self.profile.github
         self.ids.summary.text = self.profile.summary
+        self.ids.template_name.text = self.profile.template_name
         self.ids.skills.text = ", ".join(self.profile.skills)
         self.ids.languages.text = ", ".join(self.profile.languages)
         self.ids.experience.text = "\n".join(
@@ -69,6 +70,7 @@ class ProfileEditorScreen(Screen):
         self.profile.linkedin = self.ids.linkedin.text
         self.profile.github = self.ids.github.text
         self.profile.summary = self.ids.summary.text
+        self.profile.template_name = self.ids.template_name.text
         self.profile.skills = [item.strip() for item in self.ids.skills.text.split(",") if item.strip()]
         self.profile.languages = [item.strip() for item in self.ids.languages.text.split(",") if item.strip()]
 

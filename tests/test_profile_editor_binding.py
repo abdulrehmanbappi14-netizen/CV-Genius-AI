@@ -25,6 +25,7 @@ class ProfileEditorBindingTests(unittest.TestCase):
             linkedin="https://linkedin.com/in/ada",
             github="https://github.com/ada",
             summary="Pioneer in computing.",
+            template_name="classic",
             skills=["Mathematics"],
             languages=["English"],
         )
@@ -40,6 +41,7 @@ class ProfileEditorBindingTests(unittest.TestCase):
         self.assertEqual(screen.ids.linkedin.text, "https://linkedin.com/in/ada")
         self.assertEqual(screen.ids.github.text, "https://github.com/ada")
         self.assertEqual(screen.ids.summary.text, "Pioneer in computing.")
+        self.assertEqual(screen.ids.template_name.text, "classic")
         self.assertEqual(screen.ids.skills.text, "Mathematics")
         self.assertEqual(screen.ids.languages.text, "English")
         self.assertEqual(screen.ids.experience.text, "")
