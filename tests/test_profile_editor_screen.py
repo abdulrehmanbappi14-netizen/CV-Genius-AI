@@ -17,6 +17,11 @@ class ProfileEditorScreenTests(unittest.TestCase):
 
         self.assertIsInstance(screen.profile, CVProfile)
         self.assertEqual(screen.profile.full_name, "")
+        self.assertEqual(screen.profile.experiences, [])
+        self.assertEqual(screen.profile.education, [])
+        self.assertEqual(screen.profile.skills, [])
+        self.assertEqual(screen.profile.languages, [])
+        self.assertEqual(screen.profile.certifications, [])
 
 
 if __name__ == "__main__":
