@@ -24,6 +24,10 @@ class TemplatePreviewScreen(Screen):
             self.profile = CVProfile()
         return self.profile.render_preview()
 
+    def refresh_preview(self) -> None:
+        if "preview_text" in self.ids:
+            self.ids.preview_text.text = self.get_preview_text()
+
     def export_preview_to_file(self, file_path: str | Path) -> None:
         path = Path(file_path)
         path.write_text(self.get_preview_text(), encoding="utf-8")
