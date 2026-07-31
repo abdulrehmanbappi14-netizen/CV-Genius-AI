@@ -42,6 +42,11 @@ class ProfileEditorBindingTests(unittest.TestCase):
         self.assertEqual(screen.ids.summary.text, "Pioneer in computing.")
         self.assertEqual(screen.ids.skills.text, "Mathematics")
         self.assertEqual(screen.ids.languages.text, "English")
+        self.assertEqual(screen.ids.experience.text, "")
+        self.assertEqual(screen.ids.education.text, "")
+        self.assertEqual(screen.ids.projects.text, "")
+        self.assertEqual(screen.ids.certifications.text, "")
+        self.assertEqual(screen.ids.achievements.text, "")
 
 
 if __name__ == "__main__":

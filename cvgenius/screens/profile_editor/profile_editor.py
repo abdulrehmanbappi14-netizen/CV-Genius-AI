@@ -7,7 +7,13 @@ from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 
-from cvgenius.models.cv_profile import CVProfile
+from cvgenius.models.cv_profile import (
+    CVProfile,
+    CertificationEntry,
+    EducationEntry,
+    ExperienceEntry,
+    ProjectEntry,
+)
 from cvgenius.utils.profile_storage import load_profile, save_profile
 
 Builder.load_file(__file__.replace(".py", ".kv"))
@@ -36,6 +42,22 @@ class ProfileEditorScreen(Screen):
         self.ids.summary.text = self.profile.summary
         self.ids.skills.text = ", ".join(self.profile.skills)
         self.ids.languages.text = ", ".join(self.profile.languages)
+        self.ids.experience.text = "\n".join(
+            f"{item.role} - {item.company} ({item.years}) :: {item.details}".strip()
+            for item in self.profile.experiences
+        )
+        self.ids.education.text = "\n".join(
+            f"{item.institution} - {item.degree} ({item.years}) :: {item.details}".strip()
+            for item in self.profile.education
+        )
+        self.ids.projects.text = "\n".join(
+            f"{item.name} :: {item.description}".strip() for item in self.profile.projects
+        )
+        self.ids.certifications.text = "\n".join(
+            f"{item.name} - {item.issuer} ({item.year})".strip()
+            for item in self.profile.certifications
+        )
+        self.ids.achievements.text = "\n".join(self.profile.achievements)
 
     def sync_fields_to_profile(self) -> None:
         self.profile.full_name = self.ids.full_name.text
@@ -49,6 +71,30 @@ class ProfileEditorScreen(Screen):
         self.profile.summary = self.ids.summary.text
         self.profile.skills = [item.strip() for item in self.ids.skills.text.split(",") if item.strip()]
         self.profile.languages = [item.strip() for item in self.ids.languages.text.split(",") if item.strip()]
+
+        self.profile.experiences = [
+            ExperienceEntry(role=line.strip(), details="")
+            for line in self.ids.experience.text.splitlines()
+            if line.strip()
+        ]
+        self.profile.education = [
+            EducationEntry(institution=line.strip(), details="")
+            for line in self.ids.education.text.splitlines()
+            if line.strip()
+        ]
+        self.profile.projects = [
+            ProjectEntry(name=line.strip(), description="")
+            for line in self.ids.projects.text.splitlines()
+            if line.strip()
+        ]
+        self.profile.certifications = [
+            CertificationEntry(name=line.strip(), issuer="", year="")
+            for line in self.ids.certifications.text.splitlines()
+            if line.strip()
+        ]
+        self.profile.achievements = [
+            line.strip() for line in self.ids.achievements.text.splitlines() if line.strip()
+        ]
 
     def save_profile(self, file_path: str | Path) -> None:
         self.sync_fields_to_profile()
