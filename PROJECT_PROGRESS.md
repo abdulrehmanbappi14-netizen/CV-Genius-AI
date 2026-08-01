@@ -6,12 +6,18 @@ This file is the single source of truth for where this project stands.
 If you're picking this back up after days away, read this top to bottom
 before touching code.
 
-## Current checkpoint (2026-08-01)
+## Current checkpoint (2026-08-02)
 
-The verified checkpoint now includes Phase 7: AI-assisted enhancement
-architecture. The app now has a provider-agnostic AI layer that can be
-extended later by OpenAI, Claude, Gemini, or any future provider
-without coupling the rest of the UI to a specific external service.
+The verified checkpoint now includes Phase 8 Android packaging
+preparation. The app remains feature-complete from the earlier roadmap
+milestones and now has a release-ready Buildozer configuration baseline,
+real icon/splash assets, and verified regression coverage.
+
+The repo is ready for the final Linux/WSL packaging step that produces the
+actual Android APK/AAB artifacts, but the environment required for that
+step is not native Windows. The project itself is no longer blocked on
+feature logic; it is now blocked only on the availability of a Linux or
+WSL Buildozer toolchain.
 
 Implementation details:
 - `AIService` now sits in front of a provider contract so the app can
@@ -30,6 +36,8 @@ Implementation details:
 Verification evidence:
 - `python -m unittest tests.test_ai_assistant -v` → 2 tests run, OK
 - `python -m unittest discover -v` → 24 tests run, OK
+- `python -m pip show buildozer` → package not installed in native Windows environment
+- `buildozer.spec` version promoted to `1.0.0` and Android icon/splash assets added for release preparation
 
 This feature completes the Phase 7 roadmap milestone while preserving
 its architectural direction: the app remains local-first and future-

@@ -5,8 +5,11 @@ packaged for Android with Buildozer.
 
 ## Status
 
-🚧 Project skeleton only — no CV-builder features implemented yet. See
-`PROJECT_PROGRESS.md` for the detailed build log and the exact next task.
+✅ Feature-complete CV builder foundation verified in the current repo state.
+The app now includes the shared profile model, editor navigation, template
+selection, persistence/import-export, PDF export, and a provider-ready AI
+abstraction with mock placeholder actions. See `PROJECT_PROGRESS.md` for
+full implementation trail and the current Android packaging handoff.
 
 ## Tech stack
 
@@ -51,5 +54,7 @@ compatibility with Kivy wheels) before running the above.
 
 ## Building the Android APK
 
-Requires Buildozer on Linux/macOS/WSL (not covered yet — see
-`PROJECT_PROGRESS.md` next-task section).
+The repo now includes a release-ready `buildozer.spec` baseline and
+Android icon/splash assets. A real APK/AAB build still needs to be run in
+Linux/macOS/WSL with Buildozer installed so the final Android packaging
+pipeline can be verified end-to-end.
