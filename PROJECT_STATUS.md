@@ -6,6 +6,7 @@ _Last updated: 2026-08-01_
 - Kivy/KivyMD app bootstrap and screen registration
 - Home screen scaffold and layout wiring
 - Home dashboard navigation flow with editor and preview entry actions
+- Structured editor navigation into dedicated experience, education, and skills screens
 - Central `CVProfile` data model with profile metadata and structured sections
 - Profile editor screen with field synchronization
 - Resume/profile save/load persistence
@@ -14,12 +15,12 @@ _Last updated: 2026-08-01_
 - Export helper for preview text output
 - AI summary generation helper
 - Verified editor → preview handoff regression fix
-- Regression coverage for the home-screen navigation flow
+- Regression coverage for both the home-screen navigation flow and the structured editor handoff flow
 
 ## 2. Features In Progress
 - Final runtime polish around the editor/preview transition path
 - Documentation sync for project status tracking
-- Next explicit roadmap slice after dashboard navigation
+- Next explicit roadmap slice after structured editor navigation
 
 ## 3. Remaining Features
 - Full mobile UI polish and navigation refinement
@@ -39,6 +40,7 @@ _Last updated: 2026-08-01_
 - Block 7: Export and template registry support
 - Block 8: Verified preview handoff stabilization and test-backed regression fix
 - Block 9: Home/dashboard navigation entry flow and regression coverage
+- Block 10: Structured editor navigation flow for specialized experience, education, and skills editing
 
 ## 5. Remaining Roadmap Blocks
 - Remaining roadmap work beyond the verified handoff checkpoint is deferred until the next explicit task selection.
@@ -50,8 +52,8 @@ _Last updated: 2026-08-01_
 - `0.1.0`
 
 ## 8. Next Task to Start
-- The dashboard navigation slice is now complete and verified.
+- The structured editor navigation slice is now complete and verified.
 - The next task, if desired later, should be a new explicit feature slice chosen from the remaining roadmap blocks.
 
 ## 9. Estimated Overall Completion (%)
-- `70%`
+- `72%`

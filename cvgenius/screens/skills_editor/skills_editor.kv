@@ -1,0 +1,22 @@
+#:kivy 2.3.1
+
+<SkillsEditorScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "24dp"
+        spacing: "16dp"
+
+        MDLabel:
+            text: "Skills Editor"
+            halign: "center"
+            font_style: "H5"
+
+        MDTextField:
+            id: skills_text
+            hint_text: "Skills"
+            multiline: True
+            max_height: "160dp"
+
+        MDRectangleFlatButton:
+            text: "Back to Profile Editor"
+            on_release: root.back_to_profile_editor()

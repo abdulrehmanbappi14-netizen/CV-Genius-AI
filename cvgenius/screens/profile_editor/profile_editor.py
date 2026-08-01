@@ -173,3 +173,59 @@ class ProfileEditorScreen(Screen):
     def load_profile(self, file_path: str | Path) -> None:
         self.profile = load_profile(file_path)
         self.sync_profile_to_fields()
+
+    def _has_any_field_text(self) -> bool:
+        syncable_fields = (
+            "full_name",
+            "professional_title",
+            "email",
+            "phone",
+            "location",
+            "website",
+            "linkedin",
+            "github",
+            "summary",
+            "template_name",
+            "skills",
+            "languages",
+            "experience",
+            "education",
+            "projects",
+            "certifications",
+            "achievements",
+        )
+        return any(
+            bool(getattr(self.ids.get(field), "text", ""))
+            for field in syncable_fields
+            if field in self.ids
+        )
+
+    def open_experience_editor(self) -> None:
+        manager = self.manager
+        if manager is not None:
+            if self._has_any_field_text():
+                self.sync_fields_to_profile()
+            experience_screen = manager.get_screen("experience_editor")
+            experience_screen.set_profile(self.profile)
+            experience_screen.sync_profile_to_fields()
+            manager.current = "experience_editor"
+
+    def open_education_editor(self) -> None:
+        manager = self.manager
+        if manager is not None:
+            if self._has_any_field_text():
+                self.sync_fields_to_profile()
+            education_screen = manager.get_screen("education_editor")
+            education_screen.set_profile(self.profile)
+            education_screen.sync_profile_to_fields()
+            manager.current = "education_editor"
+
+    def open_skills_editor(self) -> None:
+        manager = self.manager
+        if manager is not None:
+            if self._has_any_field_text():
+                self.sync_fields_to_profile()
+            skills_screen = manager.get_screen("skills_editor")
+            skills_screen.set_profile(self.profile)
+            skills_screen.sync_profile_to_fields()
+            manager.current = "skills_editor"

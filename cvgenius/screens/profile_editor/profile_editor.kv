@@ -93,10 +93,30 @@
             multiline: True
             max_height: "120dp"
 
-        MDRectangleFlatButton:
-            text: "Preview Resume"
-            on_release: root.preview_resume()
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "12dp"
 
-        MDRectangleFlatButton:
-            text: "Back to Home"
-            on_release: root.manager.current = "home"
+            MDRectangleFlatButton:
+                text: "Experience"
+                on_release: root.open_experience_editor()
+
+            MDRectangleFlatButton:
+                text: "Education"
+                on_release: root.open_education_editor()
+
+            MDRectangleFlatButton:
+                text: "Skills"
+                on_release: root.open_skills_editor()
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "12dp"
+
+            MDRectangleFlatButton:
+                text: "Preview Resume"
+                on_release: root.preview_resume()
+
+            MDRectangleFlatButton:
+                text: "Back to Home"
+                on_release: root.manager.current = "home"

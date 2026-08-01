@@ -8,19 +8,29 @@ before touching code.
 
 ## Current checkpoint (2026-08-01)
 
-The verified checkpoint now includes a real home/dashboard navigation
-flow instead of a purely placeholder screen. The home screen exposes an
-explicit `open_profile_editor()` method and `open_template_preview()`
-method, and its `.kv` layout routes the user into the editor and
-preview paths through the existing `ScreenManager`.
+The verified checkpoint now includes a structured editor navigation
+flow that carries the current `CVProfile` object into dedicated
+experience, education, and skills screens. This is the next roadmap
+slice after the dashboard entry flow and keeps the app moving toward a
+real CV-data editing workflow.
 
-This feature was verified with:
-- `python -m unittest tests.test_home_screen -v` → 1 test run, OK
-- `python -m unittest discover -v` → 18 tests run, OK
+Implementation details:
+- `ProfileEditorScreen` now exposes `open_experience_editor()`,
+  `open_education_editor()`, and `open_skills_editor()` methods.
+- These methods preserve the in-memory profile state when navigating,
+  only syncing from the main editor when there is meaningful field
+  content to read.
+- Three new screen modules were added:
+  - `cvgenius/screens/experience_editor/`
+  - `cvgenius/screens/education_editor/`
+  - `cvgenius/screens/skills_editor/`
 
-The code change is intentionally small and focused: it upgrades the
-landing screen from a static scaffold into a real navigation entry
-point while preserving the previously verified editor/preview flow.
+Verification evidence:
+- `python -m unittest tests.test_structured_editor_flow -v` → 1 test run, OK
+- `python -m unittest discover -v` → 19 tests run, OK
+
+This slice keeps the implementation narrow and roadmap-aligned: it adds
+real form navigation without over-scaffolding unrelated features.
 
 ---
 

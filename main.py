@@ -1,8 +1,11 @@
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
 
+from cvgenius.screens.education_editor.education_editor import EducationEditorScreen
+from cvgenius.screens.experience_editor.experience_editor import ExperienceEditorScreen
 from cvgenius.screens.home.home_screen import HomeScreen
 from cvgenius.screens.profile_editor.profile_editor import ProfileEditorScreen
+from cvgenius.screens.skills_editor.skills_editor import SkillsEditorScreen
 from cvgenius.screens.template_preview.template_preview import TemplatePreviewScreen
 
 
@@ -14,6 +17,9 @@ class CVGeniusApp(MDApp):
         screen_manager = ScreenManager()
         screen_manager.add_widget(HomeScreen(name="home"))
         screen_manager.add_widget(ProfileEditorScreen(name="profile_editor"))
+        screen_manager.add_widget(ExperienceEditorScreen(name="experience_editor"))
+        screen_manager.add_widget(EducationEditorScreen(name="education_editor"))
+        screen_manager.add_widget(SkillsEditorScreen(name="skills_editor"))
         screen_manager.add_widget(TemplatePreviewScreen(name="template_preview"))
         return screen_manager
 
