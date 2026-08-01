@@ -8,31 +8,31 @@ before touching code.
 
 ## Current checkpoint (2026-08-01)
 
-The verified checkpoint now includes Phase 4: template selection and
-live resume preview. The profile editor can now surface the built-in
-resume templates from the registry and let the user pick a template
-for the current `CVProfile`. The preview screen remains synchronized
-with the current profile data so the selected template label and the
-rendered preview text update from one shared source of truth.
+The verified checkpoint now includes Phase 5: persistence and
+import/export support. The profile editor now provides a clean
+screen-level pathway for saving the current `CVProfile` as JSON,
+loading that JSON back into the form, and exporting the rendered
+resume preview to plain text for backup or handoff.
 
 Implementation details:
-- `ProfileEditorScreen` now exposes `get_template_choices()` and
-  `apply_template_choice()` to read from the registry and update the
-  current profile's `template_name` field.
-- The editor UI now offers template action buttons for the built-in
-  `classic` and `modern` templates.
-- A helper method `update_preview_from_profile()` keeps the preview
-  route consistent and avoids duplicating the screen handoff logic.
-- The preview flow remains tied to the same `CVProfile` object so the
-  active selection and live preview are always in sync.
+- `ProfileEditorScreen` now exposes `save_profile()`, `import_profile()`,
+  and `export_profile()` helpers so the profile editor owns the
+  persistence workflow without changing the shared model architecture.
+- The editor UI now includes save/load/export buttons for the JSON and
+  text export path, using the existing serializer and text exporter.
+- The `CVProfile` data model remains the single source of truth across
+  the editor, preview, and file persistence layer.
+- The new regression coverage confirms that the profile editor can
+  persist a profile, restore it, and export a preview text file in the
+  same workflow.
 
 Verification evidence:
-- `python -m unittest tests.test_template_selection -v` → 1 test run, OK
-- `python -m unittest discover -v` → 20 tests run, OK
+- `python -m unittest tests.test_phase5_persistence -v` → 1 test run, OK
+- `python -m unittest discover -v` → 21 tests run, OK
 
-This feature completes the Phase 4 roadmap milestone without changing
+This feature completes the Phase 5 roadmap milestone while preserving
 its architectural direction: the model stays central, the preview stays
-in sync, and the UI remains incremental rather than over-built.
+in sync, and the file-backed workflow stays thin and testable.
 
 ---
 

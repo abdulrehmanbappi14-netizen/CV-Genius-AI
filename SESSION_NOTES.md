@@ -18,13 +18,17 @@ Date: 2026-08-01
 - Added `tests/test_structured_editor_flow.py` to verify the specialist editor flow.
 - Completed Phase 4 by adding template selection and live preview synchronization.
 - Added `tests/test_template_selection.py` to verify the template registry choices are surfaced through the profile editor.
+- Completed Phase 5 by adding editor-level persistence and import/export support.
+- Added `tests/test_phase5_persistence.py` to verify the JSON save/load and preview-text export workflow from the profile editor.
 
 ## Verification
 - `python -m unittest tests.test_home_screen -v` → 1 test run, OK
 - `python -m unittest tests.test_structured_editor_flow -v` → 1 test run, OK
 - `python -m unittest tests.test_template_selection -v` → 1 test run, OK
+- `python -m unittest tests.test_phase5_persistence -v` → 1 test run, OK
 - `python -m unittest tests.test_profile_editor_screen -v` → 2 tests run, OK
-- `python -m unittest discover -v` → 20 tests run, OK
+- `python -m unittest discover -v` → 21 tests run, OK
 
 ## Status
+- Phase 5 persistence and import/export support is now complete and verified.
 - The repository is ready to be committed and pushed from the latest verified checkpoint.

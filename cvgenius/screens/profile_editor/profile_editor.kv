@@ -126,6 +126,22 @@
             spacing: "12dp"
 
             MDRectangleFlatButton:
+                text: "Save JSON"
+                on_release: root.save_profile("saved_profile.json")
+
+            MDRectangleFlatButton:
+                text: "Load JSON"
+                on_release: root.import_profile("saved_profile.json")
+
+            MDRectangleFlatButton:
+                text: "Export TXT"
+                on_release: root.export_profile("resume_export.txt")
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "12dp"
+
+            MDRectangleFlatButton:
                 text: "Preview Resume"
                 on_release: root.preview_resume()
 
