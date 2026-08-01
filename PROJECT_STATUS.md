@@ -17,16 +17,20 @@ _Last updated: 2026-08-01_
 - Template registry with built-in template definitions
 - Export helper for preview text output
 - AI summary generation helper
+- Provider-agnostic AI service abstraction with a mock provider
+- Placeholder AI actions for improve-resume, summary generation, skill suggestions, and resume quality checks
+- Future-ready AI UI placeholder responses in the profile editor
 - Verified editor → preview handoff regression fix
 - Regression coverage for both the home-screen navigation flow and the structured editor handoff flow
 - Regression coverage for the template selection flow
 - New Phase 5 regression coverage for the persistence/import-export workflow
 - New Phase 6 regression coverage for the PDF export and template-aware output flow
+- New Phase 7 regression coverage for the AI abstraction and mock action workflow
 
 ## 2. Features In Progress
 - Final runtime polish around the editor/preview transition path
 - Documentation sync for project status tracking
-- Next explicit roadmap slice after Phase 6 professional export and print-ready output
+- Next explicit roadmap slice after Phase 7 AI-assisted enhancement architecture
 
 ## 3. Remaining Features
 - Full mobile UI polish and navigation refinement
@@ -50,6 +54,7 @@ _Last updated: 2026-08-01_
 - Block 11: Template selection and live preview synchronization
 - Block 12: Phase 5 persistence and import/export support
 - Block 13: Phase 6 professional PDF export and print-ready output
+- Block 14: Phase 7 provider-agnostic AI architecture and placeholder AI actions
 
 ## 5. Remaining Roadmap Blocks
 - Remaining roadmap work beyond the verified handoff checkpoint is deferred until the next explicit task selection.
@@ -61,8 +66,8 @@ _Last updated: 2026-08-01_
 - `0.1.0`
 
 ## 8. Next Task to Start
-- Phase 6 professional PDF export and print-ready output are now complete and verified.
+- Phase 7 provider-agnostic AI enhancement architecture is now complete and verified.
 - The next task, if desired later, should be a new explicit feature slice chosen from the remaining roadmap blocks.
 
 ## 9. Estimated Overall Completion (%)
-- `85%`
+- `88%`

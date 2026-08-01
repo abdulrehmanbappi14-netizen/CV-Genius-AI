@@ -8,31 +8,33 @@ before touching code.
 
 ## Current checkpoint (2026-08-01)
 
-The verified checkpoint now includes Phase 6: professional export and
-print-ready output. The profile editor now exposes a native PDF export
-path that turns the current `CVProfile` into a clean, ATS-friendly
-resume document using the selected template styling cues while keeping
-spacing and section organization consistent.
+The verified checkpoint now includes Phase 7: AI-assisted enhancement
+architecture. The app now has a provider-agnostic AI layer that can be
+extended later by OpenAI, Claude, Gemini, or any future provider
+without coupling the rest of the UI to a specific external service.
 
 Implementation details:
-- `export_profile_pdf()` now generates a portable PDF document with a
-  clean, professional layout and explicit heading/section structure.
-- The `ProfileEditorScreen` now exposes `export_profile_pdf()` so the
-  editor can trigger a direct PDF export from the same shared profile
-  object used by the preview and persistence flow.
-- The exported PDF supports both built-in template styles (`classic`
-  and `modern`) and keeps the document content readable and print-ready.
-- The new regression coverage confirms that the PDF output is valid,
-  contains the expected profile details, and remains template-aware.
+- `AIService` now sits in front of a provider contract so the app can
+  swap providers later with minimal surface-area changes.
+- `MockAIProvider` provides deterministic placeholder responses for
+  the planned AI actions without calling any external API.
+- `ProfileEditorScreen` now exposes a future-ready AI action entry point
+  that can trigger `Improve Resume`, `Generate Professional Summary`,
+  `Suggest Better Skills`, and `Resume Quality Checker` actions.
+- The editor UI shows these actions with clear mock/coming-soon
+  feedback so they're visible, modular, and ready to wire to a real
+  provider later.
+- The existing `CVProfile` model remains the single source of truth for
+  both the editor and the AI service interface.
 
 Verification evidence:
-- `python -m unittest tests.test_pdf_export -v` → 2 tests run, OK
-- `python -m unittest discover -v` → 23 tests run, OK
+- `python -m unittest tests.test_ai_assistant -v` → 2 tests run, OK
+- `python -m unittest discover -v` → 24 tests run, OK
 
-This feature completes the Phase 6 roadmap milestone while preserving
-its architectural direction: the shared model stays central, the export
-logic stays thin and testable, and the document output remains focused
-on professional readability and ATS-friendly structure.
+This feature completes the Phase 7 roadmap milestone while preserving
+its architectural direction: the app remains local-first and future-
+proof, and every AI capability is abstracted behind a provider-ready
+service boundary rather than a hardcoded API integration.
 
 ---
 

@@ -146,6 +146,34 @@
             spacing: "12dp"
 
             MDRectangleFlatButton:
+                text: "Improve Resume"
+                on_release: root.run_ai_action("improve_resume")
+
+            MDRectangleFlatButton:
+                text: "Generate Summary"
+                on_release: root.run_ai_action("generate_summary")
+
+            MDRectangleFlatButton:
+                text: "Suggest Skills"
+                on_release: root.run_ai_action("suggest_skills")
+
+            MDRectangleFlatButton:
+                text: "Quality Check"
+                on_release: root.run_ai_action("check_quality")
+
+        MDLabel:
+            id: ai_feedback
+            text: "AI actions are available as future-ready placeholders with mock responses for now."
+            halign: "left"
+            theme_text_color: "Secondary"
+            size_hint_y: None
+            height: "72dp"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "12dp"
+
+            MDRectangleFlatButton:
                 text: "Preview Resume"
                 on_release: root.preview_resume()
 

@@ -15,6 +15,7 @@ from cvgenius.models.cv_profile import (
     ExperienceEntry,
     ProjectEntry,
 )
+from cvgenius.utils.ai_assistant import AIService, MockAIProvider
 from cvgenius.utils.exporter import export_profile_pdf, export_profile_text
 from cvgenius.utils.profile_storage import load_profile, save_profile
 
@@ -33,6 +34,7 @@ class ProfileEditorScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.profile = CVProfile()
+        self.ai_service = AIService(provider=MockAIProvider())
 
     def get_template_choices(self):
         return get_available_templates()
@@ -168,6 +170,20 @@ class ProfileEditorScreen(Screen):
     def export_profile_pdf(self, file_path: str | Path) -> None:
         self.sync_fields_to_profile()
         export_profile_pdf(self.profile, file_path)
+
+    def run_ai_action(self, action_name: str) -> None:
+        self.sync_fields_to_profile()
+
+        action_map = {
+            "improve_resume": self.ai_service.improve_resume,
+            "generate_summary": self.ai_service.generate_summary,
+            "suggest_skills": self.ai_service.suggest_skills,
+            "check_quality": self.ai_service.check_quality,
+        }
+
+        response = action_map.get(action_name, self.ai_service.check_quality)(self.profile)
+        if "ai_feedback" in self.ids:
+            self.ids.ai_feedback.text = response
 
     def preview_resume(self) -> None:
         manager = self.manager
