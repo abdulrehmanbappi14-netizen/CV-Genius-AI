@@ -8,31 +8,31 @@ before touching code.
 
 ## Current checkpoint (2026-08-01)
 
-The verified checkpoint now includes Phase 5: persistence and
-import/export support. The profile editor now provides a clean
-screen-level pathway for saving the current `CVProfile` as JSON,
-loading that JSON back into the form, and exporting the rendered
-resume preview to plain text for backup or handoff.
+The verified checkpoint now includes Phase 6: professional export and
+print-ready output. The profile editor now exposes a native PDF export
+path that turns the current `CVProfile` into a clean, ATS-friendly
+resume document using the selected template styling cues while keeping
+spacing and section organization consistent.
 
 Implementation details:
-- `ProfileEditorScreen` now exposes `save_profile()`, `import_profile()`,
-  and `export_profile()` helpers so the profile editor owns the
-  persistence workflow without changing the shared model architecture.
-- The editor UI now includes save/load/export buttons for the JSON and
-  text export path, using the existing serializer and text exporter.
-- The `CVProfile` data model remains the single source of truth across
-  the editor, preview, and file persistence layer.
-- The new regression coverage confirms that the profile editor can
-  persist a profile, restore it, and export a preview text file in the
-  same workflow.
+- `export_profile_pdf()` now generates a portable PDF document with a
+  clean, professional layout and explicit heading/section structure.
+- The `ProfileEditorScreen` now exposes `export_profile_pdf()` so the
+  editor can trigger a direct PDF export from the same shared profile
+  object used by the preview and persistence flow.
+- The exported PDF supports both built-in template styles (`classic`
+  and `modern`) and keeps the document content readable and print-ready.
+- The new regression coverage confirms that the PDF output is valid,
+  contains the expected profile details, and remains template-aware.
 
 Verification evidence:
-- `python -m unittest tests.test_phase5_persistence -v` → 1 test run, OK
-- `python -m unittest discover -v` → 21 tests run, OK
+- `python -m unittest tests.test_pdf_export -v` → 2 tests run, OK
+- `python -m unittest discover -v` → 23 tests run, OK
 
-This feature completes the Phase 5 roadmap milestone while preserving
-its architectural direction: the model stays central, the preview stays
-in sync, and the file-backed workflow stays thin and testable.
+This feature completes the Phase 6 roadmap milestone while preserving
+its architectural direction: the shared model stays central, the export
+logic stays thin and testable, and the document output remains focused
+on professional readability and ATS-friendly structure.
 
 ---
 

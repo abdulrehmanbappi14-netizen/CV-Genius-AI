@@ -15,7 +15,7 @@ from cvgenius.models.cv_profile import (
     ExperienceEntry,
     ProjectEntry,
 )
-from cvgenius.utils.exporter import export_profile_text
+from cvgenius.utils.exporter import export_profile_pdf, export_profile_text
 from cvgenius.utils.profile_storage import load_profile, save_profile
 
 Builder.load_file(__file__.replace(".py", ".kv"))
@@ -164,6 +164,10 @@ class ProfileEditorScreen(Screen):
     def export_profile(self, file_path: str | Path) -> None:
         self.sync_fields_to_profile()
         export_profile_text(self.profile, file_path)
+
+    def export_profile_pdf(self, file_path: str | Path) -> None:
+        self.sync_fields_to_profile()
+        export_profile_pdf(self.profile, file_path)
 
     def preview_resume(self) -> None:
         manager = self.manager

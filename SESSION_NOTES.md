@@ -20,15 +20,18 @@ Date: 2026-08-01
 - Added `tests/test_template_selection.py` to verify the template registry choices are surfaced through the profile editor.
 - Completed Phase 5 by adding editor-level persistence and import/export support.
 - Added `tests/test_phase5_persistence.py` to verify the JSON save/load and preview-text export workflow from the profile editor.
+- Completed Phase 6 by adding professional PDF export and print-ready resume output.
+- Added `tests/test_pdf_export.py` to verify the generated PDF is valid, template-aware, and includes the expected resume content.
 
 ## Verification
 - `python -m unittest tests.test_home_screen -v` → 1 test run, OK
 - `python -m unittest tests.test_structured_editor_flow -v` → 1 test run, OK
 - `python -m unittest tests.test_template_selection -v` → 1 test run, OK
 - `python -m unittest tests.test_phase5_persistence -v` → 1 test run, OK
+- `python -m unittest tests.test_pdf_export -v` → 2 tests run, OK
 - `python -m unittest tests.test_profile_editor_screen -v` → 2 tests run, OK
-- `python -m unittest discover -v` → 21 tests run, OK
+- `python -m unittest discover -v` → 23 tests run, OK
 
 ## Status
-- Phase 5 persistence and import/export support is now complete and verified.
+- Phase 6 professional PDF export and print-ready output support is now complete and verified.
 - The repository is ready to be committed and pushed from the latest verified checkpoint.

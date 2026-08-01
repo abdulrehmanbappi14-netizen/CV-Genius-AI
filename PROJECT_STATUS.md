@@ -11,6 +11,7 @@ _Last updated: 2026-08-01_
 - Profile editor screen with field synchronization
 - Resume/profile save/load persistence
 - Import/export support for profile JSON and preview text export
+- Professional PDF export and print-ready output generation
 - Template selection and live preview synchronization for the current profile
 - Template preview screen and preview text refresh flow
 - Template registry with built-in template definitions
@@ -20,11 +21,12 @@ _Last updated: 2026-08-01_
 - Regression coverage for both the home-screen navigation flow and the structured editor handoff flow
 - Regression coverage for the template selection flow
 - New Phase 5 regression coverage for the persistence/import-export workflow
+- New Phase 6 regression coverage for the PDF export and template-aware output flow
 
 ## 2. Features In Progress
 - Final runtime polish around the editor/preview transition path
 - Documentation sync for project status tracking
-- Next explicit roadmap slice after Phase 5 persistence and import/export
+- Next explicit roadmap slice after Phase 6 professional export and print-ready output
 
 ## 3. Remaining Features
 - Full mobile UI polish and navigation refinement
@@ -47,6 +49,7 @@ _Last updated: 2026-08-01_
 - Block 10: Structured editor navigation flow for specialized experience, education, and skills editing
 - Block 11: Template selection and live preview synchronization
 - Block 12: Phase 5 persistence and import/export support
+- Block 13: Phase 6 professional PDF export and print-ready output
 
 ## 5. Remaining Roadmap Blocks
 - Remaining roadmap work beyond the verified handoff checkpoint is deferred until the next explicit task selection.
@@ -58,8 +61,8 @@ _Last updated: 2026-08-01_
 - `0.1.0`
 
 ## 8. Next Task to Start
-- Phase 5 persistence and import/export are now complete and verified.
+- Phase 6 professional PDF export and print-ready output are now complete and verified.
 - The next task, if desired later, should be a new explicit feature slice chosen from the remaining roadmap blocks.
 
 ## 9. Estimated Overall Completion (%)
-- `80%`
+- `85%`

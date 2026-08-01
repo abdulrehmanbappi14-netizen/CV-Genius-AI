@@ -137,6 +137,10 @@
                 text: "Export TXT"
                 on_release: root.export_profile("resume_export.txt")
 
+            MDRectangleFlatButton:
+                text: "Export PDF"
+                on_release: root.export_profile_pdf("resume_export.pdf")
+
         MDBoxLayout:
             orientation: "horizontal"
             spacing: "12dp"

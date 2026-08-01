@@ -1,5 +1,7 @@
 kivy>=2.3.1
 kivymd>=1.2.0
+reportlab>=4.2.0
+pypdf>=5.0.0
 
 # Dev/build tooling - Buildozer only runs on Linux/macOS/WSL, not native
 # Windows. Install this separately inside WSL or a Linux CI runner when
