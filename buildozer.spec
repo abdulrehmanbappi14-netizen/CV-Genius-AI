@@ -7,7 +7,7 @@ package.domain = org.cvgenius
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,ttf,json
 
-version = 0.1.0
+version = 1.0.0
 
 requirements = python3,kivy==2.3.1,kivymd==1.2.0
 

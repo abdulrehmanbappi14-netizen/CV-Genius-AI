@@ -26,18 +26,19 @@ _Last updated: 2026-08-01_
 - New Phase 5 regression coverage for the persistence/import-export workflow
 - New Phase 6 regression coverage for the PDF export and template-aware output flow
 - New Phase 7 regression coverage for the AI abstraction and mock action workflow
+- Android packaging baseline finalized with release assets generated and Buildozer metadata promoted to a release-ready version
 
 ## 2. Features In Progress
-- Final runtime polish around the editor/preview transition path
-- Documentation sync for project status tracking
-- Next explicit roadmap slice after Phase 7 AI-assisted enhancement architecture
+- Final Android packaging handoff under Linux/WSL
+- Documentation sync for the release-preparation checkpoint
+- Buildozer + python-for-android verification on a Linux packaging host
 
 ## 3. Remaining Features
 - Full mobile UI polish and navigation refinement
 - Expanded profile form UX for richer input editing
 - PDF / export quality enhancements
 - Template-specific styling and rendering improvements
-- App packaging and build verification for Android
+- Real APK/AAB generation under Linux/WSL with Buildozer
 - Additional user-facing validation and error handling
 
 ## 4. Completed Roadmap Blocks
@@ -63,11 +64,11 @@ _Last updated: 2026-08-01_
 - `90036f6`
 
 ## 7. Current Version
-- `0.1.0`
+- `1.0.0`
 
 ## 8. Next Task to Start
-- Phase 7 provider-agnostic AI enhancement architecture is now complete and verified.
-- The next task, if desired later, should be a new explicit feature slice chosen from the remaining roadmap blocks.
+- Phase 8 Android packaging preparation is now baselined.
+- The remaining work is to run the real Buildozer pipeline inside a Linux/WSL environment and produce the final Android artifacts.
 
 ## 9. Estimated Overall Completion (%)
-- `88%`
+- `92%`

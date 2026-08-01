@@ -24,6 +24,7 @@ Date: 2026-08-01
 - Added `tests/test_pdf_export.py` to verify the generated PDF is valid, template-aware, and includes the expected resume content.
 - Completed Phase 7 by adding a provider-agnostic AI architecture with a mock provider and visible placeholder AI actions.
 - Added `tests/test_ai_assistant.py` coverage to verify the service abstraction and placeholder action affordances.
+- Completed the Phase 8 packaging baseline by promoting `buildozer.spec` to a release version and generating the missing Android icon and splash assets required by the manifest.
 
 ## Verification
 - `python -m unittest tests.test_home_screen -v` → 1 test run, OK
@@ -37,4 +38,5 @@ Date: 2026-08-01
 
 ## Status
 - Phase 7 provider-agnostic AI enhancement architecture is now complete and verified.
-- The repository is ready to be committed and pushed from the latest verified checkpoint.
+- Phase 8 packaging preparation is baselined with real Android release assets and a release-ready Buildozer version target.
+- The repository is ready to be committed and pushed from the latest verified checkpoint, with the remaining real APK/AAB generation to be performed in a Linux/WSL environment.
