@@ -53,6 +53,18 @@
             id: template_name
             hint_text: "Template name"
 
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "12dp"
+
+            MDRectangleFlatButton:
+                text: "Classic"
+                on_release: root.apply_template_choice("classic")
+
+            MDRectangleFlatButton:
+                text: "Modern"
+                on_release: root.apply_template_choice("modern")
+
         MDTextField:
             id: experience
             hint_text: "Experience"

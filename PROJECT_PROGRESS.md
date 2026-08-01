@@ -8,29 +8,31 @@ before touching code.
 
 ## Current checkpoint (2026-08-01)
 
-The verified checkpoint now includes a structured editor navigation
-flow that carries the current `CVProfile` object into dedicated
-experience, education, and skills screens. This is the next roadmap
-slice after the dashboard entry flow and keeps the app moving toward a
-real CV-data editing workflow.
+The verified checkpoint now includes Phase 4: template selection and
+live resume preview. The profile editor can now surface the built-in
+resume templates from the registry and let the user pick a template
+for the current `CVProfile`. The preview screen remains synchronized
+with the current profile data so the selected template label and the
+rendered preview text update from one shared source of truth.
 
 Implementation details:
-- `ProfileEditorScreen` now exposes `open_experience_editor()`,
-  `open_education_editor()`, and `open_skills_editor()` methods.
-- These methods preserve the in-memory profile state when navigating,
-  only syncing from the main editor when there is meaningful field
-  content to read.
-- Three new screen modules were added:
-  - `cvgenius/screens/experience_editor/`
-  - `cvgenius/screens/education_editor/`
-  - `cvgenius/screens/skills_editor/`
+- `ProfileEditorScreen` now exposes `get_template_choices()` and
+  `apply_template_choice()` to read from the registry and update the
+  current profile's `template_name` field.
+- The editor UI now offers template action buttons for the built-in
+  `classic` and `modern` templates.
+- A helper method `update_preview_from_profile()` keeps the preview
+  route consistent and avoids duplicating the screen handoff logic.
+- The preview flow remains tied to the same `CVProfile` object so the
+  active selection and live preview are always in sync.
 
 Verification evidence:
-- `python -m unittest tests.test_structured_editor_flow -v` → 1 test run, OK
-- `python -m unittest discover -v` → 19 tests run, OK
+- `python -m unittest tests.test_template_selection -v` → 1 test run, OK
+- `python -m unittest discover -v` → 20 tests run, OK
 
-This slice keeps the implementation narrow and roadmap-aligned: it adds
-real form navigation without over-scaffolding unrelated features.
+This feature completes the Phase 4 roadmap milestone without changing
+its architectural direction: the model stays central, the preview stays
+in sync, and the UI remains incremental rather than over-built.
 
 ---
 

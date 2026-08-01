@@ -16,12 +16,15 @@ Date: 2026-08-01
   - added navigation helpers to `ProfileEditorScreen`
   - preserved the same in-memory `CVProfile` object during cross-screen transitions
 - Added `tests/test_structured_editor_flow.py` to verify the specialist editor flow.
+- Completed Phase 4 by adding template selection and live preview synchronization.
+- Added `tests/test_template_selection.py` to verify the template registry choices are surfaced through the profile editor.
 
 ## Verification
 - `python -m unittest tests.test_home_screen -v` → 1 test run, OK
 - `python -m unittest tests.test_structured_editor_flow -v` → 1 test run, OK
+- `python -m unittest tests.test_template_selection -v` → 1 test run, OK
 - `python -m unittest tests.test_profile_editor_screen -v` → 2 tests run, OK
-- `python -m unittest discover -v` → 19 tests run, OK
+- `python -m unittest discover -v` → 20 tests run, OK
 
 ## Status
 - The repository is ready to be committed and pushed from the latest verified checkpoint.

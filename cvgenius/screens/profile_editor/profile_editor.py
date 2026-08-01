@@ -7,6 +7,7 @@ from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 
+from cvgenius.data.templates.template_registry import get_available_templates, get_template
 from cvgenius.models.cv_profile import (
     CVProfile,
     CertificationEntry,
@@ -20,15 +21,35 @@ Builder.load_file(__file__.replace(".py", ".kv"))
 
 
 class ProfileEditorScreen(Screen):
-    """Minimal profile editor screen used for Stage 2.
+    """Profile editor screen for CV data entry and preview orchestration.
 
-    The screen holds a single `CVProfile` instance that will later be
-    populated from form fields and used for preview/export workflows.
+    The screen holds a single `CVProfile` instance that is populated from
+    form fields and used for preview/export workflows. Phase 4 adds a
+    simple template-selection pathway so the chosen template can drive
+    the live preview output.
     """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.profile = CVProfile()
+
+    def get_template_choices(self):
+        return get_available_templates()
+
+    def apply_template_choice(self, template_name: str) -> None:
+        if template_name in {item.name for item in self.get_template_choices()}:
+            self.profile.template_name = template_name
+            if "template_name" in self.ids:
+                self.ids.template_name.text = template_name
+            self.sync_fields_to_profile()
+
+    def update_preview_from_profile(self) -> None:
+        manager = self.manager
+        if manager is not None:
+            preview_screen = manager.get_screen("template_preview")
+            preview_screen.profile = self.profile
+            preview_screen.refresh_preview()
+            manager.current = "template_preview"
 
     def sync_profile_to_fields(self) -> None:
         if "full_name" in self.ids:
@@ -165,10 +186,7 @@ class ProfileEditorScreen(Screen):
             if has_field_text:
                 self.sync_fields_to_profile()
 
-            preview_screen = manager.get_screen("template_preview")
-            preview_screen.profile = self.profile
-            preview_screen.refresh_preview()
-            manager.current = "template_preview"
+            self.update_preview_from_profile()
 
     def load_profile(self, file_path: str | Path) -> None:
         self.profile = load_profile(file_path)
