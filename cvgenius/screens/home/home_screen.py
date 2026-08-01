@@ -5,7 +5,19 @@ Builder.load_file(__file__.replace(".py", ".kv"))
 
 
 class HomeScreen(Screen):
-    """Landing screen shown when the app opens. Placeholder for Day 1 -
-    this proves the Kivy/KivyMD toolchain and screen-loading pattern
-    work end-to-end before any real CV-builder features are added."""
-    pass
+    """Dashboard-style landing screen for the CV builder.
+
+    The home screen now acts as the entry point into the profile editor
+    and preview flow, providing a minimal but real navigation surface
+    for the growing app.
+    """
+
+    def open_profile_editor(self) -> None:
+        manager = self.manager
+        if manager is not None:
+            manager.current = "profile_editor"
+
+    def open_template_preview(self) -> None:
+        manager = self.manager
+        if manager is not None:
+            manager.current = "template_preview"

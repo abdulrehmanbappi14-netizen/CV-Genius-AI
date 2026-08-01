@@ -12,10 +12,25 @@
             font_style: "H4"
 
         MDLabel:
-            text: "Android CV & Resume Builder - project skeleton is running."
+            text: "Dashboard"
             halign: "center"
             theme_text_color: "Secondary"
 
-        MDRectangleFlatButton:
-            text: "Open Profile Editor"
-            on_release: root.manager.current = "profile_editor"
+        MDLabel:
+            text: "Create, review, and refine your CV profile from one place."
+            halign: "center"
+            theme_text_color: "Secondary"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "12dp"
+            size_hint_y: None
+            height: "48dp"
+
+            MDRectangleFlatButton:
+                text: "Open Profile Editor"
+                on_release: root.open_profile_editor()
+
+            MDRectangleFlatButton:
+                text: "Open Preview"
+                on_release: root.open_template_preview()

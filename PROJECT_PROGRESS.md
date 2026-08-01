@@ -1,10 +1,26 @@
 # CV Genius AI — Project Progress
 
-_Last updated: 2026-07-31 (Day 1)_
+_Last updated: 2026-08-01_
 
 This file is the single source of truth for where this project stands.
 If you're picking this back up after days away, read this top to bottom
 before touching code.
+
+## Current checkpoint (2026-08-01)
+
+The verified checkpoint now includes a real home/dashboard navigation
+flow instead of a purely placeholder screen. The home screen exposes an
+explicit `open_profile_editor()` method and `open_template_preview()`
+method, and its `.kv` layout routes the user into the editor and
+preview paths through the existing `ScreenManager`.
+
+This feature was verified with:
+- `python -m unittest tests.test_home_screen -v` → 1 test run, OK
+- `python -m unittest discover -v` → 18 tests run, OK
+
+The code change is intentionally small and focused: it upgrades the
+landing screen from a static scaffold into a real navigation entry
+point while preserving the previously verified editor/preview flow.
 
 ---
 
